@@ -19,7 +19,7 @@ public class RepoAlumnos {
 		Alumno juanPerez = new Alumno();
 		juanPerez.setNombre("Juan");
 		juanPerez.setApellido("Perez");
-		juanPerez.setLegajo(123456);
+		juanPerez.setLegajo(1);
 		juanPerez.setUsuario("juanPerez");		
 		Tarea parcial1 = new Tarea("Parcial 1", Arrays.asList("2", "6"));
 		Tarea parcial2 = new Tarea("Parcial 2", Arrays.asList("3"));
@@ -29,7 +29,7 @@ public class RepoAlumnos {
 		Alumno alu = new Alumno();
 		alu.setNombre("Alu");
 		alu.setApellido("Alu");
-		alu.setLegajo(654321);
+		alu.setLegajo(2);
 		alu.setUsuario("alualu");		
 		Tarea parcial3 = new Tarea("Parcial 1", Arrays.asList("4"));
 		alu.agregarTarea(parcial3);

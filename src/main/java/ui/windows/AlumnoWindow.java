@@ -60,11 +60,11 @@ public class AlumnoWindow extends MainWindow<Alumno> {
 		tareas.bindValueToProperty("tareaSeleccionada");
 
 		new Label(panelDer).setText("Nota").alignLeft();
-		nota = new Label(panelDer);//.setText("-");
+		nota = new Label(panelDer);
 		nota.bindValueToProperty("nota");
 		
 		new Label(panelDer).setText("Estado").alignLeft();
-		estado = new Label(panelDer);//.setText("-");
+		estado = new Label(panelDer);
 		estado.setBackground(Color.GRAY);
 		estado.bindValueToProperty("aprobada");
 		
