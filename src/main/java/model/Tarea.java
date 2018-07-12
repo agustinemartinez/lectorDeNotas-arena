@@ -1,4 +1,4 @@
-package domain;
+package model;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ public class Tarea {
 	public String getNombre() { return nombre; }
 	public List<String> getNotas() { return notas; }
 
-	public String notaActual() {
+	public String getNotaActual() {
 		return notas.get(notas.size()-1);
 	}
 
 	public boolean getAprobada() {
-		if (this.notaActual().chars().allMatch( Character::isDigit ))
-			return Integer.parseInt(this.notaActual()) > 6;
-		return !this.notaActual().equals("M");
+		if (this.getNotaActual().chars().allMatch( Character::isDigit ))
+			return Integer.parseInt(this.getNotaActual()) >= 6;
+		return !this.getNotaActual().equals("M");
 	}
 	
 	@Override

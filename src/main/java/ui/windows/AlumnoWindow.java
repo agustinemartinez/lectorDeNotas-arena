@@ -1,25 +1,18 @@
-package domain;
+package ui.windows;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
+import model.Alumno;
+import model.Tarea;
 
-import org.eclipse.swt.layout.RowLayout;
 import org.uqbar.arena.windows.MainWindow;
-import org.uqbar.arena.filters.TextFilter;
 import org.uqbar.arena.layout.ColumnLayout;
-import org.uqbar.arena.layout.HorizontalLayout;
-import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.NumericField;
-import org.uqbar.arena.widgets.Widget;
 
 @SuppressWarnings("serial")
 public class AlumnoWindow extends MainWindow<Alumno> {
@@ -65,14 +58,15 @@ public class AlumnoWindow extends MainWindow<Alumno> {
 		tareas.setWidth(100);
 		tareas.bindItemsToProperty("tareas");
 		tareas.bindValueToProperty("tareaSeleccionada");
-		
+
 		new Label(panelDer).setText("Nota").alignLeft();
-		nota = new Label(panelDer).setText("-");
+		nota = new Label(panelDer);//.setText("-");
+		nota.bindValueToProperty("nota");
 		
 		new Label(panelDer).setText("Estado").alignLeft();
-		estado = new Label(panelDer).setText("-");
+		estado = new Label(panelDer);//.setText("-");
 		estado.setBackground(Color.GRAY);
-		//.bindBackgroundToProperty(propertyName);
+		estado.bindValueToProperty("aprobada");
 		
 		// BOTONES
 		new Button(panelIzq)
@@ -84,18 +78,8 @@ public class AlumnoWindow extends MainWindow<Alumno> {
 			.onClick(()-> this.getModelObject().guardarCambios());
 		
 		tareas.onSelection(() -> { 
-			System.out.println(this.getModelObject().getTareaSeleccionada());
-			//nota.bindValueToProperty("tareaSeleccionada.notaActual");
-			//this.getModelObject().getTareaSeleccionada().toString(); //.notaActual());
-			//estado.bindBackgroundToProperty("aprobada");
-//			if (this.getModelObject().getTareaSeleccionada().getAprobada())
-//				estado.setText("Aprobada");
-//			else
-//				estado.setText("Desaprobada");				
+			tareas.bindValueToProperty("tareaSeleccionada");
 		});
 	}
 	
-	public static void main(String[] args) {
-		new AlumnoWindow().startApplication();
-	}
 }
