@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
+//import javafx.collections.ObservableList;
+//import javafx.scene.control.ComboBox;
 
 import org.eclipse.swt.layout.RowLayout;
 import org.uqbar.arena.windows.MainWindow;
