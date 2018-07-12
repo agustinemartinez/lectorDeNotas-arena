@@ -1,5 +1,8 @@
 package domain;
 
+import model.Alumno;
+import model.Tarea;
+
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
