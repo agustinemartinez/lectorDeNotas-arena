@@ -1,8 +1,7 @@
 package ui.windows;
 
-import java.awt.Color;
-
 import model.Tarea;
+import ui.vm.AlumnoViewModel;
 
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
@@ -13,8 +12,6 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.NumericField;
-
-import ui.vm.AlumnoViewModel;
 
 @SuppressWarnings("serial")
 public class AlumnoWindow extends SimpleWindow<AlumnoViewModel> {
@@ -68,8 +65,8 @@ public class AlumnoWindow extends SimpleWindow<AlumnoViewModel> {
 		
 		new Label(panelDer).setText("Estado").alignLeft();
 		lbEstado = new Label(panelDer);
-		lbEstado.setBackground(Color.GRAY);
 		lbEstado.bindValueToProperty("tareaSeleccionada.notaActual.estado");
+		lbEstado.bindBackgroundToProperty("tareaSeleccionada.notaActual.fondoEstado");
 	}
 	
 	@Override
@@ -77,10 +74,7 @@ public class AlumnoWindow extends SimpleWindow<AlumnoViewModel> {
 		new Button(panelIzq).setCaption("Buscar")
 							.onClick(()-> {
 								try { this.getModelObject().cargarAlumno(); }
-								catch(IndexOutOfBoundsException ex) { 
-									this.messageAlumnoInexistente();
-									//ex.printStackTrace(); 
-								}
+								catch(IndexOutOfBoundsException ex) { this.messageAlumnoInexistente(); }
 							})
 							.setWidth(75);		
 
@@ -92,7 +86,7 @@ public class AlumnoWindow extends SimpleWindow<AlumnoViewModel> {
 	}
 
 	private void editarDatos() {
-		Dialog<?> dialog = new AlumnoEditarDatosWindow(this, this.getModelObject());
+		Dialog<?> dialog = new AlumnoEditarDatosWindow(this, this.getModelObject().getAlumnoSeleccionado());
 		dialog.onAccept(() -> {});
 		dialog.open();
 	}

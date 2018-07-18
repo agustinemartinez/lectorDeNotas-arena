@@ -38,16 +38,4 @@ public class AlumnoViewModel {
 											  .get(0);
 	}
 
-	public void guardarAlumno() {
-		int pos = this.alumnos.stream()
-							  .map(a -> a.getLegajo())
-							  .collect(Collectors.toList())
-							  .indexOf(this.alumnoSeleccionado.getLegajo());
-		if (pos >= 0) {
-			this.alumnos.remove(pos);
-			this.alumnos.add(this.alumnoSeleccionado);
-		}
-		Repositorios.alumnos.setAlumnos(this.alumnos);
-	}
-
 }
