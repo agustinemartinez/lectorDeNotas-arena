@@ -1,31 +1,29 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tarea {
-	String nombre;
-	List<String> notas;
 	
-	public Tarea(String nombre, List<String> notas) {
-		this.nombre = nombre;
-		this.notas = notas;
+	private String descripcion;
+	Nota notaActual;
+	private List<Nota> notas;
+	
+	public Tarea(String descripcion) {
+		this.descripcion = descripcion;
+		this.notas = new ArrayList<Nota>();
 	}
 
-	public String getNombre() { return nombre; }
-	public List<String> getNotas() { return notas; }
-
-	public String getNotaActual() {
-		return notas.get(notas.size()-1);
-	}
-
-	public boolean getAprobada() {
-		if (this.getNotaActual().chars().allMatch( Character::isDigit ))
-			return Integer.parseInt(this.getNotaActual()) >= 6;
-		return !this.getNotaActual().equals("M");
+	public String getDescripcion() { return this.descripcion; }
+	public List<Nota> getNotas() { return this.notas; }
+	public Nota getNotaActual() { return notaActual; }
+	public void setNotaActual(Nota notaActual) { this.notaActual = notaActual; }
+	
+	public void agregarNota(String nota) {
+		this.notaActual = new Nota(nota);
+		this.notas.add(this.notaActual); 
 	}
 	
 	@Override
-	public String toString() {
-		return this.nombre;
-	}
+	public String toString() { return this.descripcion; }
 }

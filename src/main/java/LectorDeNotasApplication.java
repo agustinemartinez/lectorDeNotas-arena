@@ -1,10 +1,18 @@
+import model.Fixture;
 import ui.windows.AlumnoWindow;
+import org.uqbar.arena.Application;
+import org.uqbar.arena.windows.Window;
 
-
-public class LectorDeNotasApplication {
+public class LectorDeNotasApplication extends Application {
 
 	public static void main(String[] args) {
-		new AlumnoWindow().startApplication();
+		Fixture.inicializar();
+		new LectorDeNotasApplication().start();
+	}
+
+	@Override
+	protected Window<?> createMainWindow() {
+		return new AlumnoWindow(this);
 	}
 
 }
