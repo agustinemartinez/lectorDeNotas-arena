@@ -2,9 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import model.repositories.RepoAlumnos;
 
 import org.uqbar.commons.model.annotations.Observable;
 
@@ -39,29 +36,4 @@ public class Alumno {
 
 	public void agregarTarea(Tarea tarea) { this.tareas.add(tarea); }
 	
-//	public List<String> getNombreTareas() { return this.tareas.stream().map(t -> t.getDescripcion()).collect(Collectors.toList()); }
-	
-//	public void cargarDatos() {
-//		try {
-//			Alumno a = RepoAlumnos.getInstance().getAlumno(this.legajo);
-//			this.nombre   = a.getNombre();
-//			this.apellido = a.getApellido();
-//			this.legajo   = a.getLegajo();
-//			this.usuario  = a.getUsuario();
-//			this.tareas   = a.getTareas();
-//			this.tareaSeleccionada = this.tareas.get(0);
-//			this.nota = this.tareaSeleccionada.getNotaActual();
-//			this.aprobada = this.tareaSeleccionada.getAprobada()?Estado.Aprobado:Estado.Desaprobado;
-//		}
-//		catch(IndexOutOfBoundsException e) { 
-//			this.nombre   = "";
-//			this.apellido = "";
-//			this.usuario  = "";
-//			this.tareas   = null;
-//			this.tareaSeleccionada = null; 
-//			this.nota = "-";
-//			this.aprobada = null;
-//		}
-//	}	
-
 }

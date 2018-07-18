@@ -5,7 +5,6 @@ import java.awt.Color;
 import model.Tarea;
 
 import org.uqbar.arena.windows.Dialog;
-import org.uqbar.arena.windows.MainWindow;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.arena.layout.ColumnLayout;
@@ -20,91 +19,88 @@ import ui.vm.AlumnoViewModel;
 @SuppressWarnings("serial")
 public class AlumnoWindow extends SimpleWindow<AlumnoViewModel> {
 
+	Panel mainPanel, panelIzq, panelMedio, panelDer;
+	Label lbNombre, lbApellido, lbUsuario, lbNota, lbEstado;
+	NumericField nfLegajo;
+	Selector<Tarea> cbTareas;
+
 	public AlumnoWindow(WindowOwner parent) { super(parent, new AlumnoViewModel()); }
 
 	@Override
-	protected void createFormPanel(Panel mainPanel) {
-		this.setTitle("Lector de Notas");
-		mainPanel.setLayout(new ColumnLayout(2));
+	protected void createFormPanel(Panel formPanel) {
 		
-		Panel panelIzq, panelDer;
-		Label nombre, apellido, usuario, nota, estado;
-		NumericField legajo;
-		Selector<Tarea> tareas;
-
+		this.setTitle("Lector de Notas");
+		mainPanel = new Panel(formPanel).setLayout(new ColumnLayout(3));
+		
 		panelIzq   = new Panel(mainPanel);		
-		//panelMedio = new Panel(mainPanel);
+		panelMedio = new Panel(mainPanel);
 		panelDer   = new Panel(mainPanel);
 
 		// LEGAJO
 		new Label(panelIzq).setText("Legajo").alignLeft();
-		legajo = new NumericField(panelIzq);
-		legajo.setWidth(75);
-		legajo.bindValueToProperty("legajoIngresado");
+		nfLegajo = new NumericField(panelIzq);
+		nfLegajo.setWidth(75);
+		nfLegajo.bindValueToProperty("legajoIngresado");
 
 		// DATOS ALUMNO
-		nombre = new Label(panelIzq).setText("Nombre: " + this.getModelObject().getAlumnoSeleccionado().getNombre());
-		nombre.alignLeft().setWidth(100);
-
-		apellido = new Label(panelIzq).setText("Apellido: " + this.getModelObject().getAlumnoSeleccionado().getApellido());
-		apellido.alignLeft().setWidth(100);
-
-		usuario = new Label(panelIzq).setText("Usuario: " + this.getModelObject().getAlumnoSeleccionado().getUsuario());
-		usuario.alignLeft().setWidth(100);
+		new Label(panelMedio).setText("Nombre:").alignLeft().setWidth(150);
+		lbNombre = new Label(panelMedio);
+		lbNombre.bindValueToProperty("alumnoSeleccionado.nombre");
 		
-		new Button(panelIzq)
-		.setCaption("Buscar")
-		.onClick(()-> {
-			try { this.getModelObject().cargarAlumno(); }
-			catch(IndexOutOfBoundsException ex) { ex.printStackTrace(); } // Ventana de error
-		});
+		new Label(panelMedio).setText("Apellido:").alignLeft().setWidth(150);
+		lbApellido = new Label(panelMedio);
+		lbApellido.bindValueToProperty("alumnoSeleccionado.apellido");
 
-
-//		nombre.bindValueToProperty("nombre");
-//		nombre.bindEnabledToProperty("nombre");
+		new Label(panelMedio).setText("Usuario:").alignLeft().setWidth(150);
+		lbUsuario = new Label(panelMedio);
+		lbUsuario.bindValueToProperty("alumnoSeleccionado.usuario");
 		
-//		new Label(panelMedio).setText("Apellido").alignLeft().setWidth(100);
-//		apellido = new TextBox(panelMedio);
-//		apellido.bindValueToProperty("apellido");
-
-//		new Label(panelMedio).setText("Usuario").alignLeft().setWidth(100);
-//		usuario = new TextBox(panelMedio);
-//		usuario.bindValueToProperty("usuario");
-
 		// TAREAS ALUMNO
 		new Label(panelDer).setText("Tareas").alignLeft();
-		tareas = new Selector<Tarea>(panelDer);
-		tareas.setWidth(100);
-		//tareas.bindItemsToProperty("alumnoSeleccionado.tareas");
-		//tareas.bindValueToProperty("tareaSeleccionada");
+		cbTareas = new Selector<Tarea>(panelDer);
+		cbTareas.setWidth(100);
+		cbTareas.bindItemsToProperty("alumnoSeleccionado.tareas");
+		cbTareas.bindValueToProperty("tareaSeleccionada");
 
 		new Label(panelDer).setText("Nota").alignLeft();
-		nota = new Label(panelDer);
-		//nota.bindValueToProperty("tareaSeleccionada.notaActual");
+		lbNota = new Label(panelDer);
+		lbNota.bindValueToProperty("tareaSeleccionada.notaActual");
 		
 		new Label(panelDer).setText("Estado").alignLeft();
-		estado = new Label(panelDer);
-		//estado.setBackground(Color.GRAY);
-		//estado.bindValueToProperty("tareaSeleccionada.notaActual.aprobada");
-
-//		new Button(panelMedio)
-//			.setCaption("Editar")
-//			.onClick(()-> this.getModelObject().editarDatos());
-		
-//		tareas.onSelection(() -> { 
-//			tareas.bindValueToProperty("tareaSeleccionada");
-//		});
-
+		lbEstado = new Label(panelDer);
+		lbEstado.setBackground(Color.GRAY);
+		lbEstado.bindValueToProperty("tareaSeleccionada.notaActual.estado");
 	}
 	
 	@Override
 	protected void addActions(Panel panelActions) {
+		new Button(panelIzq).setCaption("Buscar")
+							.onClick(()-> {
+								try { this.getModelObject().cargarAlumno(); }
+								catch(IndexOutOfBoundsException ex) { 
+									this.messageAlumnoInexistente();
+									//ex.printStackTrace(); 
+								}
+							})
+							.setWidth(75);		
+
+		new Button(panelIzq).setCaption("Editar")
+							.onClick(()-> {
+								if(this.getModelObject().getAlumnoSeleccionado().getLegajo().length() > 0)
+									this.editarDatos();
+							});
 	}
 
-//	public void editarDatos() {
-//		Dialog<?> dialog = new AlumnoEditarDatosWindow(this);
-//		//dialog.onAccept(() -> getModelObject().setDatosAlumno(Repositorios.alumnos.all()));
-//		dialog.open();
-//	}
-	
+	private void editarDatos() {
+		Dialog<?> dialog = new AlumnoEditarDatosWindow(this, this.getModelObject());
+		dialog.onAccept(() -> {});
+		dialog.open();
+	}
+
+	private void messageAlumnoInexistente() {
+		ErrorPanelWindow errorWindow = new ErrorPanelWindow(this, "Alumno inexistente");
+		errorWindow.onAccept(() -> {});
+		errorWindow.open();
+	}
+
 }

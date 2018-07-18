@@ -3,20 +3,28 @@ package model;
 public class Nota {
 	
 	private String nota;
-	private boolean aprobada;
+	private String estado;
 	
 	public Nota(String nota) { 
-		this.nota = nota; 
-		this.setAprobada(this.estaAprobada());
+		this.nota = nota;
+		if (this.estaAprobada())
+			this.estado = "Aprobado";
+		else
+			this.estado = "Desaprobado";
 	}
 
-	public boolean isAprobada() { return aprobada; }
-	public void setAprobada(boolean aprobada) { this.aprobada = aprobada; }
+	public String getEstado() { return this.estado; }
+	public String getNota() { return nota; }
+	public void setEstado(String estado) { this.estado = estado; }
+	public void setNota(String nota) { this.nota = nota; }
 
-	public boolean estaAprobada() {
+	private boolean estaAprobada() {
 		if (this.nota.chars().allMatch( Character::isDigit ))
 			return Integer.parseInt(this.nota) >= 6;
 		return !this.nota.equals("M");
 	}
+
+	@Override
+	public String toString() { return this.nota; }
 
 }

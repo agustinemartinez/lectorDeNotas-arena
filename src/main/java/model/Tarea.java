@@ -6,7 +6,7 @@ import java.util.List;
 public class Tarea {
 	
 	private String descripcion;
-	Nota notaActual;
+	private Nota notaActual;
 	private List<Nota> notas;
 	
 	public Tarea(String descripcion) {
@@ -16,12 +16,13 @@ public class Tarea {
 
 	public String getDescripcion() { return this.descripcion; }
 	public List<Nota> getNotas() { return this.notas; }
-	public Nota getNotaActual() { return notaActual; }
+	public Nota getNotaActual() { return this.notaActual; }
 	public void setNotaActual(Nota notaActual) { this.notaActual = notaActual; }
 	
-	public void agregarNota(String nota) {
+	public Tarea agregarNota(String nota) {
 		this.notaActual = new Nota(nota);
 		this.notas.add(this.notaActual); 
+		return this;
 	}
 	
 	@Override
