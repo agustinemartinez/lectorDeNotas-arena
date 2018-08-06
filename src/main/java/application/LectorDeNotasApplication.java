@@ -1,3 +1,5 @@
+package application;
+
 import model.Fixture;
 import ui.windows.AlumnoWindow;
 import org.uqbar.arena.Application;

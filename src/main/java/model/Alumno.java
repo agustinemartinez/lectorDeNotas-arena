@@ -19,7 +19,7 @@ public class Alumno {
 		this.apellido = apellido;
 		this.legajo   = legajo;
 		this.usuario  = usuario;
-		this.tareas   = new ArrayList<Tarea>();;
+		this.tareas   = new ArrayList<Tarea>();
 	}
 	
 	public String getLegajo() { return legajo; }

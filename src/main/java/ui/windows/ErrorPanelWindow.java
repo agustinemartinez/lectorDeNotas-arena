@@ -27,7 +27,6 @@ public class ErrorPanelWindow extends Dialog {
 
 	@Override
 	protected void addActions(Panel actions) {
-		
 		new Button(actions).setCaption("Aceptar")
 						   .onClick(this::cancel)
 						   .alignCenter();

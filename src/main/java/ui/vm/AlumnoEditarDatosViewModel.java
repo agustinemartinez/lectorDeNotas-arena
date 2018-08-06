@@ -13,10 +13,10 @@ public class AlumnoEditarDatosViewModel {
 	private String usuario;
 	
 	public AlumnoEditarDatosViewModel(Alumno alumno) {
-		this.alumno = alumno;
-		this.nombre = alumno.getNombre();
+		this.alumno	  = alumno;
+		this.nombre   = alumno.getNombre();
 		this.apellido = alumno.getApellido();
-		this.usuario = alumno.getUsuario();
+		this.usuario  = alumno.getUsuario();
 	}
 
 	public Alumno getAlumno() { return alumno; }

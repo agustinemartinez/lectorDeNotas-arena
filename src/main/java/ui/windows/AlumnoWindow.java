@@ -65,8 +65,8 @@ public class AlumnoWindow extends SimpleWindow<AlumnoViewModel> {
 		
 		new Label(panelDer).setText("Estado").alignLeft();
 		lbEstado = new Label(panelDer);
-		lbEstado.bindValueToProperty("tareaSeleccionada.notaActual.estado");
-		lbEstado.bindBackgroundToProperty("tareaSeleccionada.notaActual.fondoEstado");
+		lbEstado.bindValueToProperty("estadoTarea");
+		lbEstado.bindBackgroundToProperty("fondoEstadoTarea");
 	}
 	
 	@Override

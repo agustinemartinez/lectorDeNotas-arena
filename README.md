@@ -1,1 +1,0 @@
-# lectorDeNotas-arena
