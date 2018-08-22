@@ -2,11 +2,14 @@ package domain;
 
 import model.Alumno;
 import model.Fixture;
+import model.NotaNumerica;
 import model.Tarea;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.awt.Color;
 
 import ui.vm.AlumnoViewModel;
 
@@ -19,16 +22,16 @@ public class LectorDeNotasTest {
 	
 	@Test
 	public void testTareaAprobada() {
-		Tarea tarea1 = new Tarea("fisica").agregarNota("1")
-										  .agregarNota("7");
+		Tarea tarea1 = new Tarea("fisica").agregarNota(new NotaNumerica(2))
+										  .agregarNota(new NotaNumerica(7));
 		assertTrue(tarea1.getNotaActual().estaAprobada());
 	}
 	
 	@Test
 	public void testAlumnoDesprobado() {
 		Alumno alumno = new Alumno("10", "Nicolas", "Calle", "riBer");
-		Tarea tarea1 = new Tarea("ingenieria y sociedad").agregarNota("2")
-														 .agregarNota("4");
+		Tarea tarea1 = new Tarea("ingenieria y sociedad").agregarNota(new NotaNumerica(2))
+														 .agregarNota(new NotaNumerica(4));
 		alumno.agregarTarea(tarea1);
 		assertFalse(alumno.getTareas().get(0).getNotaActual().estaAprobada());
 	}
@@ -40,6 +43,23 @@ public class LectorDeNotasTest {
 		modelObject.cargarAlumno();
 		assertEquals("Juan" , modelObject.getAlumnoSeleccionado().getNombre());
 		assertEquals("Perez", modelObject.getAlumnoSeleccionado().getApellido());
+	}
+
+	@Test
+	public void testObtenerNotaActualDeTareaAPartirDeListaDeNotas() {
+		Tarea tarea = new Tarea("Una Tarea");
+		tarea.agregarNota(new NotaNumerica(1))
+			 .agregarNota(new NotaNumerica(2))
+			 .agregarNota(new NotaNumerica(3));
+		assertEquals("3", tarea.getNotaActual().toString());
+	}
+
+	@Test
+	public void testColorDeNotaAprobada() {
+		AlumnoViewModel modelObject = new AlumnoViewModel();
+		Tarea tareaAprobada = new Tarea("Una Tarea Aprobada").agregarNota(new NotaNumerica(9));
+		modelObject.setTareaSeleccionada(tareaAprobada);
+		assertEquals(Color.GREEN, modelObject.getFondoEstadoTarea());
 	}
 
 }

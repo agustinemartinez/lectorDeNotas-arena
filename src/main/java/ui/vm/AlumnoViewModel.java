@@ -1,10 +1,10 @@
 package ui.vm;
 
 import java.awt.Color;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import model.Alumno;
+import model.NotaConceptual;
 import model.Tarea;
 import model.repositories.Repositorios;
 
@@ -13,7 +13,6 @@ import org.uqbar.commons.model.annotations.Observable;
 @Observable
 public class AlumnoViewModel {
 
-	private List<Alumno> alumnos;
 	private String legajoIngresado;
 	private Alumno alumnoSeleccionado;
 	private Tarea tareaSeleccionada;
@@ -21,7 +20,6 @@ public class AlumnoViewModel {
 	private Color fondoEstadoTarea;
 
 	public AlumnoViewModel() { 
-		this.alumnos = Repositorios.alumnos.all(); 
 		this.alumnoSeleccionado = new Alumno("", "", "", "");
 		this.limpiarEstadoTarea();
 	}
@@ -47,15 +45,16 @@ public class AlumnoViewModel {
 	}	
 	
 	public void cargarAlumno() {
-		this.alumnoSeleccionado = this.alumnos.stream()
-											  .filter(alu -> alu.getLegajo().equals(legajoIngresado))
-											  .collect(Collectors.toList())
-											  .get(0);
+		this.alumnoSeleccionado = Repositorios.alumnos.all()
+													  .stream()
+													  .filter(alu -> alu.getLegajo().equals(legajoIngresado))
+													  .collect(Collectors.toList())
+													  .get(0);
 		this.limpiarEstadoTarea();
 	}
 
 	private void limpiarEstadoTarea() {
-		this.tareaSeleccionada = new Tarea("").agregarNota("-");
+		this.tareaSeleccionada = new Tarea("").agregarNota(new NotaConceptual("-"));
 		this.estadoTarea = "-";
 		this.fondoEstadoTarea = Color.GRAY;		
 	}
