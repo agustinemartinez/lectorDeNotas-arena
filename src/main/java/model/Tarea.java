@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.commons.model.annotations.Observable;
+
+@Observable
 public class Tarea {
 	
 	private String descripcion;
@@ -15,6 +18,7 @@ public class Tarea {
 
 	public String getDescripcion() { return this.descripcion; }
 	public List<Nota> getNotas() { return this.notas; }
+	public void setNotas(List<Nota> notas) { this.notas = notas; }
 	
 	public Nota getNotaActual() { 
 		return this.notas.get(this.notas.size()-1); 
