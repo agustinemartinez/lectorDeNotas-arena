@@ -28,12 +28,12 @@ public class LectorDeNotasTest {
 	}
 	
 	@Test
-	public void testAlumnoDesprobado() {
-		Alumno alumno = new Alumno("10", "Nicolas", "Calle", "riBer");
-		Tarea tarea1 = new Tarea("ingenieria y sociedad").agregarNota(new NotaNumerica(2))
-														 .agregarNota(new NotaNumerica(4));
+	public void testAlumnoAprobado() {
+		Alumno alumno = new Alumno("10", "Nicolas", "Calle", "river");
+		Tarea tarea1 = new Tarea("ingenieria y sociedad").agregarNota(new NotaNumerica(8))
+														 .agregarNota(new NotaNumerica(8));
 		alumno.agregarTarea(tarea1);
-		assertFalse(alumno.getTareas().get(0).getNotaActual().estaAprobada());
+		assertTrue(alumno.getTareas().get(0).getNotaActual().estaAprobada());
 	}
 
 	@Test
