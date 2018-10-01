@@ -1,13 +1,13 @@
 package ui.vm;
 
 import java.awt.Color;
-import java.util.stream.Collectors;
 
 import model.Alumno;
 import model.NotaConceptual;
 import model.Tarea;
 import model.repositories.Repositorios;
 
+import org.apache.commons.collections15.Transformer;
 import org.uqbar.commons.model.annotations.Observable;
 
 @Observable
@@ -18,6 +18,17 @@ public class AlumnoViewModel {
 	private Tarea tareaSeleccionada;
 	private String estadoTarea;
 	private Color fondoEstadoTarea;
+	private Transformer<Tarea, Color> transformer = new Transformer<Tarea, Color>() {
+        @Override
+        public Color transform(Tarea tarea) {
+            if (estadoTarea.equals("-"))
+                return Color.GRAY;            	
+            else if (tarea.getNotaActual().estaAprobada())
+            	return Color.GREEN;
+            else
+                return Color.RED;
+        }
+    };
 
 	public AlumnoViewModel() { 
 		this.alumnoSeleccionado = new Alumno("", "", "", "");
@@ -33,30 +44,27 @@ public class AlumnoViewModel {
 	public void setLegajoIngresado(String legajoIngresado) { this.legajoIngresado = legajoIngresado; }
 
 	public void setTareaSeleccionada(Tarea tareaSeleccionada) { 
-		this.tareaSeleccionada = tareaSeleccionada; 
-		if (tareaSeleccionada.getNotaActual().estaAprobada()) {
-			this.estadoTarea = "Aprobado";
-			this.fondoEstadoTarea = Color.GREEN;
+		if (tareaSeleccionada != null) {
+			this.tareaSeleccionada = tareaSeleccionada; 
+			if (tareaSeleccionada.getNotaActual().estaAprobada())
+				this.estadoTarea = "Aprobado";
+			else
+				this.estadoTarea = "Desaprobado";
+			this.fondoEstadoTarea = transformer.transform(tareaSeleccionada);			
 		}
-		else {
-			this.estadoTarea = "Desaprobado";
-			this.fondoEstadoTarea = Color.RED;
-		}
+		else
+			this.limpiarEstadoTarea();
 	}	
-	
+
 	public void cargarAlumno() {
-		this.alumnoSeleccionado = Repositorios.alumnos.all()
-													  .stream()
-													  .filter(alu -> alu.getLegajo().equals(legajoIngresado))
-													  .collect(Collectors.toList())
-													  .get(0);
+		this.alumnoSeleccionado = Repositorios.alumnos.getAlumno(legajoIngresado);				
 		this.limpiarEstadoTarea();
 	}
 
 	private void limpiarEstadoTarea() {
 		this.tareaSeleccionada = new Tarea("").agregarNota(new NotaConceptual("-"));
 		this.estadoTarea = "-";
-		this.fondoEstadoTarea = Color.GRAY;		
+		this.fondoEstadoTarea = transformer.transform(tareaSeleccionada);
 	}
 	
 }

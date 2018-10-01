@@ -21,7 +21,7 @@ public class Tarea {
 	public void setNotas(List<Nota> notas) { this.notas = notas; }
 	
 	public Nota getNotaActual() { 
-		return this.notas.get(this.notas.size()-1); 
+		return notas.size()>0?notas.get(notas.size()-1):notas.get(0); 
 	}
 	
 	public Tarea agregarNota(Nota nota) {
