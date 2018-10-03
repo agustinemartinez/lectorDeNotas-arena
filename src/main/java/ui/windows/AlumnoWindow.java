@@ -80,7 +80,7 @@ public class AlumnoWindow extends SimpleWindow<AlumnoViewModel> {
 
 		new Button(panelIzq).setCaption("Editar")
 							.onClick(()-> {
-								if(this.getModelObject().getAlumnoSeleccionado().getLegajo().length() > 0)
+								if(this.getModelObject().getAlumnoSeleccionado().getCode().length() > 0)
 									this.editarDatos();
 							});
 	}

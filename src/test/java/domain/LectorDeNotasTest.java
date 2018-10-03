@@ -33,7 +33,7 @@ public class LectorDeNotasTest {
 		Tarea tarea1 = new Tarea("ingenieria y sociedad").agregarNota(new NotaNumerica(2))
 														 .agregarNota(new NotaNumerica(4));
 		alumno.agregarTarea(tarea1);
-		assertFalse(alumno.getTareas().get(0).getNotaActual().estaAprobada());
+		assertFalse(alumno.getAssignments().get(0).getNotaActual().estaAprobada());
 	}
 
 	@Test
@@ -41,8 +41,8 @@ public class LectorDeNotasTest {
 		AlumnoViewModel modelObject = new AlumnoViewModel();
 		modelObject.setLegajoIngresado("1");
 		modelObject.cargarAlumno();
-		assertEquals("Juan" , modelObject.getAlumnoSeleccionado().getNombre());
-		assertEquals("Perez", modelObject.getAlumnoSeleccionado().getApellido());
+		assertEquals("Juan" , modelObject.getAlumnoSeleccionado().getFirst_name());
+		assertEquals("Perez", modelObject.getAlumnoSeleccionado().getLast_name());
 	}
 
 	@Test

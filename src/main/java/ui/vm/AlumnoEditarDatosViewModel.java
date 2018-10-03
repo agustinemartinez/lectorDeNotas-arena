@@ -3,6 +3,7 @@ package ui.vm;
 import org.uqbar.commons.model.annotations.Observable;
 
 import model.Alumno;
+import model.repositories.RepoAlumnos;
 
 @Observable
 public class AlumnoEditarDatosViewModel {
@@ -14,9 +15,9 @@ public class AlumnoEditarDatosViewModel {
 	
 	public AlumnoEditarDatosViewModel(Alumno alumno) {
 		this.alumno	  = alumno;
-		this.nombre   = alumno.getNombre();
-		this.apellido = alumno.getApellido();
-		this.usuario  = alumno.getUsuario();
+		this.nombre   = alumno.getFirst_name();
+		this.apellido = alumno.getLast_name();
+		this.usuario  = alumno.getGithub_user();
 	}
 
 	public Alumno getAlumno() { return alumno; }
@@ -29,9 +30,10 @@ public class AlumnoEditarDatosViewModel {
 	public void setUsuario(String usuario) { this.usuario = usuario; }	
 	
 	public void guardarAlumno() {
-		this.alumno.setNombre(this.nombre);
-		this.alumno.setApellido(this.apellido);
-		this.alumno.setUsuario(this.usuario);
+		this.alumno.setFirst_name(this.nombre);
+		this.alumno.setLast_name(this.apellido);
+		this.alumno.setGithub_user(this.usuario);
+		//RepoAlumnos.guardarAlumno(this.alumno);
 	}
 	
 }

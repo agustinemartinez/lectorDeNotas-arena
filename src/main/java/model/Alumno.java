@@ -8,32 +8,34 @@ import org.uqbar.commons.model.annotations.Observable;
 @Observable
 public class Alumno {
 	
-	private String legajo;
-	private String nombre;
-	private String apellido;
-	private String usuario;
-	private List<Tarea> tareas;
+	private String code;
+	private String first_name;
+	private String last_name;
+	private String github_user;
+	private List<Tarea> assignments;
+	
+	public Alumno() { }
 	
 	public Alumno(String legajo, String nombre, String apellido, String usuario) {
-		this.nombre   = nombre;
-		this.apellido = apellido;
-		this.legajo   = legajo;
-		this.usuario  = usuario;
-		this.tareas   = new ArrayList<Tarea>();
+		this.first_name   = nombre;
+		this.last_name = apellido;
+		this.code   = legajo;
+		this.github_user  = usuario;
+		this.assignments   = new ArrayList<Tarea>();
 	}
 	
-	public String getLegajo() { return legajo; }
-	public String getNombre() { return nombre; }
-	public String getApellido() { return apellido; }
-	public String getUsuario() { return usuario; }
-	public List<Tarea> getTareas() { return tareas; }
+	public String getCode() { return code; }
+	public String getFirst_name() { return first_name; }
+	public String getLast_name() { return last_name; }
+	public String getGithub_user() { return github_user; }
+	public List<Tarea> getAssignments() { return assignments; }
 
-	public void setNombre(String nombre) { this.nombre = nombre; }
-	public void setApellido(String apellido) { this.apellido = apellido; }
-	public void setLegajo(String legajo) { this.legajo = legajo; }
-	public void setUsuario(String usuario) { this.usuario = usuario; }
-	public void setTareas(List<Tarea> tareas) { this.tareas = tareas; }
+	public void setFirst_name(String nombre) { this.first_name = nombre; }
+	public void setLast_name(String apellido) { this.last_name = apellido; }
+	public void setCode(String legajo) { this.code = legajo; }
+	public void setGithub_user(String usuario) { this.github_user = usuario; }
+	public void setAssignments(List<Tarea> tareas) { this.assignments = tareas; }
 
-	public void agregarTarea(Tarea tarea) { this.tareas.add(tarea); }
+	public void agregarTarea(Tarea tarea) { this.assignments.add(tarea); }
 	
 }

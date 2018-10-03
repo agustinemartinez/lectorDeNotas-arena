@@ -18,7 +18,7 @@ public class RepoAlumnos {
 	
 	public Alumno getAlumno(String legajo) {
 		return alumnos.stream()
-					  .filter(alu -> alu.getLegajo().equals(legajo))
+					  .filter(alu -> alu.getCode().equals(legajo))
 					  .collect(Collectors.toList())
 					  .get(0);
 	}
