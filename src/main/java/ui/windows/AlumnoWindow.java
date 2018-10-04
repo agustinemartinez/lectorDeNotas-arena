@@ -42,21 +42,21 @@ public class AlumnoWindow extends SimpleWindow<AlumnoViewModel> {
 		// DATOS ALUMNO
 		new Label(panelMedio).setText("Nombre:").alignLeft().setWidth(150);
 		lbNombre = new Label(panelMedio);
-		lbNombre.bindValueToProperty("alumnoSeleccionado.nombre");
+		lbNombre.bindValueToProperty("alumnoSeleccionado.first_name");
 		
 		new Label(panelMedio).setText("Apellido:").alignLeft().setWidth(150);
 		lbApellido = new Label(panelMedio);
-		lbApellido.bindValueToProperty("alumnoSeleccionado.apellido");
+		lbApellido.bindValueToProperty("alumnoSeleccionado.last_name");
 
 		new Label(panelMedio).setText("Usuario:").alignLeft().setWidth(150);
 		lbUsuario = new Label(panelMedio);
-		lbUsuario.bindValueToProperty("alumnoSeleccionado.usuario");
+		lbUsuario.bindValueToProperty("alumnoSeleccionado.github_user");
 		
 		// TAREAS ALUMNO
 		new Label(panelDer).setText("Tareas").alignLeft();
 		cbTareas = new Selector<Tarea>(panelDer);
 		cbTareas.setWidth(100);
-		cbTareas.bindItemsToProperty("alumnoSeleccionado.tareas");
+		cbTareas.bindItemsToProperty("alumnoSeleccionado.assignments");
 		cbTareas.bindValueToProperty("tareaSeleccionada");
 
 		new Label(panelDer).setText("Nota").alignLeft();
@@ -74,7 +74,7 @@ public class AlumnoWindow extends SimpleWindow<AlumnoViewModel> {
 		new Button(panelIzq).setCaption("Buscar")
 							.onClick(()-> {
 								try { this.getModelObject().cargarAlumno(); }
-								catch(IndexOutOfBoundsException ex) { this.messageAlumnoInexistente(); }
+								catch(Exception ex) { this.messageAlumnoInexistente(); }
 							})
 							.setWidth(75);		
 

@@ -31,10 +31,7 @@ public class RequestService {
      		   throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 
      		String output = response.getEntity(String.class);
-
-     		System.out.println("Output from Server: " + output);
-     		
-     		//output = "{\"legajo\": \"1\",\"nombre\": \"nombre\",\"apellido\": \"apellido\",\"usuario\": \"usuario\"}";
+     		//System.out.println("Output from Server: " + output);
      		return mapper.readValue( output , Alumno.class );
     	} 
     	catch (Exception e) {
@@ -44,7 +41,21 @@ public class RequestService {
     }
     
     public void putAlumno(Alumno alumno) {
-    	
+    	try {
+    		String body = mapper.writeValueAsString(alumno);
+        	WebResource.Builder webResource = client.resource(NOTITAS_SERVER)
+													.queryParam("code", alumno.getCode())
+        											.header("AUTHORIZATION", "Bearer " + TOKEN);
+        											
+        	ClientResponse response = webResource.accept("application/json")
+        										 .put(ClientResponse.class, body);
+
+        	if (response.getStatus() != 201)
+     		   throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+    	} 
+    	catch (Exception e) {
+ 			e.printStackTrace();    	
+    	}    	
     }
     
 }

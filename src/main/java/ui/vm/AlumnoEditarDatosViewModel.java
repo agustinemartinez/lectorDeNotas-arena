@@ -3,7 +3,7 @@ package ui.vm;
 import org.uqbar.commons.model.annotations.Observable;
 
 import model.Alumno;
-import model.repositories.RepoAlumnos;
+import model.repositories.Repositorios;
 
 @Observable
 public class AlumnoEditarDatosViewModel {
@@ -33,7 +33,7 @@ public class AlumnoEditarDatosViewModel {
 		this.alumno.setFirst_name(this.nombre);
 		this.alumno.setLast_name(this.apellido);
 		this.alumno.setGithub_user(this.usuario);
-		//RepoAlumnos.guardarAlumno(this.alumno);
+		Repositorios.alumnos.guardarAlumno(this.alumno);
 	}
 	
 }

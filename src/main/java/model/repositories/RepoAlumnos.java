@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import server.RequestService;
 import model.Alumno;
 
 public class RepoAlumnos {
@@ -17,11 +18,16 @@ public class RepoAlumnos {
 	public void setAlumnos(List<Alumno> alumnos) { this.alumnos = alumnos; }
 	
 	public Alumno getAlumno(String legajo) {
-		return alumnos.stream()
-					  .filter(alu -> alu.getCode().equals(legajo))
-					  .collect(Collectors.toList())
-					  .get(0);
+		return new RequestService().getAlumno(legajo);
+//		return alumnos.stream()
+//					  .filter(alu -> alu.getCode().equals(legajo))
+//					  .collect(Collectors.toList())
+//					  .get(0);
 	}
 
+	public void guardarAlumno(Alumno alumno) {
+		new RequestService().putAlumno(alumno);
+	}
+	
 }
 

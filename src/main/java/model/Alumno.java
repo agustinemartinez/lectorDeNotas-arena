@@ -5,7 +5,10 @@ import java.util.List;
 
 import org.uqbar.commons.model.annotations.Observable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Observable
+@JsonIgnoreProperties(value = { "changeSupport" })
 public class Alumno {
 	
 	private String code;
