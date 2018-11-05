@@ -1,7 +1,5 @@
 package application;
 
-import model.Alumno;
-import model.Fixture;
 import ui.windows.AlumnoWindow;
 
 import org.uqbar.arena.Application;

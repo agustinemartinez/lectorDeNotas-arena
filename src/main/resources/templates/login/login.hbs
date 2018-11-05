@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Login</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="intercoolerjs:use-actual-http-method" content="true"/>
+
+		<base href="http://localhost:9000/login/">
+	</head>
+	<body style="background-color: #666666;">
+		
+					<form id="formulario" class="login100-form validate-form" ic-post-to="/login">
+
+						<span class="login100-form-title p-b-43">
+							Iniciar sesión
+						</span>
+						
+						
+						<div class="wrap-input100" data-validate="Debe ingresar un usuario valido">
+							<input class="input100" type="text" name="user">
+							<span class="focus-input100"></span>
+							<span class="label-input100">Email</span>
+						</div>
+						
+						
+						<div class="wrap-input100 validate-input" data-validate="Debe ingresar una contraseña">
+							<input class="input100" type="password" name="pass">
+							<span class="focus-input100"></span>
+							<span class="label-input100">Contraseña</span>
+						</div>
+
+						<div class="container-login100-form-btn">
+							<button id="login-btn" class="login100-form-btn">
+								Ingresar
+								<i class="ic-indicator fa fa-spinner fa-spin" style="display:none"></i>
+							</button>
+						</div>
+						
+					</form>
+
+	    <!-- Intercooler.js -->
+	  	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	  	<script src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.2.1.min.js"></script>
+
+		<script src="js/model.js"></script>
+
+	</body>
+</html>
