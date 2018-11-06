@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-	$('#formulario')
+	$('#btn-enter')
 	.on('beforeSend.ic', function() {
 
 	})
