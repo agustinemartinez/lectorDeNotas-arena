@@ -5,8 +5,11 @@
     <title>Login form</title>
     <base href="http://localhost:9000/login/">
     <meta name="intercoolerjs:use-actual-http-method" content="true"/>
+    
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.2.1.min.js"></script>
+    <script src="js/model.js"></script>
+
     <style type="text/css">
       body {
   margin: 0;
@@ -105,7 +108,7 @@
     <div class="login-box">
       <img src="https://banner2.kisspng.com/20180531/wxl/kisspng-avatar-computer-icons-logo-photographer-5b102d1e728c13.7251972015277867824692.jpg" class="avatar">
       <h1>Iniciar sesion</h1>
-      <form ic-post-to="/login">
+      <form id="formulario" ic-post-to="/login">
         <!-- USERNAME INPUT -->
         <label for="username">Usuario</label>
         <input type="text" name="user" id="user" placeholder="Ingresar usuario">
