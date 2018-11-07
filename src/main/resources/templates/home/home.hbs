@@ -1,7 +1,14 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Notas form</title>
+    <base href="http://localhost:9000//">
+    <meta name="intercoolerjs:use-actual-http-method" content="true"/>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.2.1.min.js"></script>
+
     <style type="text/css">
       body {
   margin: 0;
@@ -102,7 +109,7 @@
     <script src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.2.1.min.js"></script>
 
     <div class="form-box">
-      <h1> Hola {{usuario}}! Aqui estan sus notas</h1><br>
+      <h1> Hola {{user}}! Aqui estan sus notas</h1><br>
 
       <form>
 
@@ -125,7 +132,7 @@
           <label for="estado"><h3>Estado {{color}}</h3></label>
         </div><br>
 
-        <center><input type="submit" value="Salir"></center>
+        <center><input type="submit" value="Salir" ic-post-to="/logout"></center>
       </form>
     </div>
   </body>
