@@ -14,7 +14,7 @@ public class LoginController {
 	
 	public static void authentication(Request req, Response res) {
 		String token = req.cookie("Authorization");
-		boolean estaLogueado = token == null ? false : securityService.isLogged( token.replace("Bearer ", "") );
+		boolean estaLogueado = token==null ? false : securityService.isLogged( token.replace("Bearer ", "") );
 		boolean loginPathRequest = req.pathInfo().equals("/login");
 		if( !estaLogueado && !loginPathRequest )
 			res.redirect("/login", 303);			
@@ -22,7 +22,7 @@ public class LoginController {
 
 	public static ModelAndView show(Request req, Response res) {
 		String token = req.cookie("Authorization");		
-		boolean estaLogueado = token == null ? false : securityService.isLogged( token.replace("Bearer ", "") );
+		boolean estaLogueado = token==null ? false : securityService.isLogged( token.replace("Bearer ", "") );
 		if( estaLogueado )
 			return HomeController.home(req, res);
 		return new ModelAndView(null, "login/login.hbs");
