@@ -44,7 +44,7 @@ public class AlumnoViewModel {
 	public void setLegajoIngresado(String legajoIngresado) { this.legajoIngresado = legajoIngresado; }
 
 	public void setTareaSeleccionada(Tarea tareaSeleccionada) { 
-		if (tareaSeleccionada != null) {
+		if (tareaSeleccionada != null && tareaSeleccionada.getNotas() != null) {
 			this.tareaSeleccionada = tareaSeleccionada; 
 			if (tareaSeleccionada.getNotaActual().estaAprobada())
 				this.estadoTarea = "Aprobado";
