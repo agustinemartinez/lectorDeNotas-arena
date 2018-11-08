@@ -3,9 +3,11 @@ package model;
 public class NotaNumerica implements Nota {
 	
 	private int nota;
-
+	private boolean estado;
+	
 	public NotaNumerica(int nota) { 
 		this.nota = nota;
+		this.estado = this.estaAprobada();
 	}
 
 	public int getNota() { return nota; }
