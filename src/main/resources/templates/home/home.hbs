@@ -28,24 +28,21 @@
       <form>
 
         <div class="input-group mb-3 container-fluid">
-          <!--div class="input-group-prepend"-->
-		        <table class="table">
-		            <tr>
-		              <th scope="col">#</th>
-		              <th scope="col">Tarea</th>
-		              <th scope="col">Nota</th>
-		              <th scope="col">Estado</th>
-		            </tr>
-		            {{#each tareas}}
-		            <tr>		           
-		              <th scope="row">1</th>
-		              <td>{{ title }}</td>
-		              <td>{{ description }}</td>
-		              <td>{{ id }}</td> 
-		            </tr>
-		            {{/each}}
-		        </table>
-	        </div><br>
+		    <table class="table">
+		        <tr>
+		            <th scope="col"> Tarea  </th>
+		            <th scope="col"> Nota   </th>
+		            <th scope="col"> Estado </th>
+		        </tr>
+		        {{#each tareas}}
+		        <tr>		           
+		            <td>{{  title  }}</td>
+		            <td>{{  nota   }}</td>
+		            <td>{{  estado }}</td> 
+		        </tr>
+		        {{/each}}
+		    </table>
+	    </div><br>
       
 	    <center><button id="btn-enter" type="submit" value="Salir" ic-post-to="/logout">Salir</button></center>
       

@@ -69,7 +69,7 @@ public class RequestService {
     	}    	
     }
     
-    private List<Tarea> getTareas() {
+    public  List<Tarea> getTareas() {
     	try {
         	WebResource.Builder webResource = client.resource(NOTITAS_SERVER_STUDENT_ASSIGNMENTS)
         											.header("AUTHORIZATION", "Bearer " + TOKEN);
