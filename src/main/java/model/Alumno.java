@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Observable
 @JsonIgnoreProperties(value = { "changeSupport" })
-public class Alumno {
+public class Alumno extends Usuario {
 	
 	private String code;
 	private String first_name;
