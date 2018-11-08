@@ -6,6 +6,7 @@ import request.dto.TareasDTO;
 import model.Alumno;
 import model.Tarea;
 
+
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -41,6 +42,7 @@ public class RequestService {
      		String output = response.getEntity(String.class);
      		Alumno alumno = mapper.readValue( output , Alumno.class );
      		alumno.setAssignments(this.getTareas());
+
      		return alumno;
     	} 
     	catch (Exception e) {
@@ -86,5 +88,6 @@ public class RequestService {
  			return null;
     	}
     }
+
     
 }

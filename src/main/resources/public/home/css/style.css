@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url(http://www.hdfondos.eu/pictures/2014/0929/1/orig_64536.jpg) no-repeat center top;
+  background-size: cover;
+  font-family: sans-serif;
+  height: 100vh;
+}
+
+.form-box {
+  width: 470px;
+  height: 400px;
+  background: #000;
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 70px 30px;
+}
+
+.form-box h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.form-box label {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  display: block;
+}
+
+.form-box input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-box input[type="text"], .login-box input[type="password"] {
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.form-box button[type="submit"] {
+  border: none;
+  outline: none;
+  width: 50px;
+  height: 30px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 20px;
+  
+}
+
+.form-box input[type="submit"]:hover {
+  cursor: pointer;
+  background: #ffc107;
+  color: #000;
+
+}
+
+.form-box a {
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  color: darkgrey;
+}
+
+.form-box a:hover {
+  color: #fff;
+}
