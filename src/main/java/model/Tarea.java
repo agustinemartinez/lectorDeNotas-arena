@@ -19,14 +19,12 @@ public class Tarea {
 	private String descripcion;
 	@JsonProperty("grades")
 	private List<Nota> notas;
-	private Nota notaActual;
 	
 	public Tarea() { }
 	
 	public Tarea(String descripcion) {
 		this.descripcion = descripcion;
 		this.notas = new ArrayList<Nota>();
-		this.notaActual = this.getNotaActual();
 	}
 
 	public long getId() { return this.id; }

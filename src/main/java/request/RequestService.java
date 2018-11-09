@@ -6,7 +6,6 @@ import request.dto.TareasDTO;
 import model.Alumno;
 import model.Tarea;
 
-
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -31,7 +30,7 @@ public class RequestService {
     	try {
         	WebResource.Builder webResource = client.resource(NOTITAS_SERVER_STUDENT)
         											.queryParam("code", legajo)
-        											.header("AUTHORIZATION", "Bearer " + TOKEN);
+        											.header("Authorization", "Bearer " + TOKEN);
         											
         	ClientResponse response = webResource.accept("application/json")
         										 .get(ClientResponse.class);
@@ -56,7 +55,7 @@ public class RequestService {
     		String body = mapper.writeValueAsString(alumno);
         	WebResource.Builder webResource = client.resource(NOTITAS_SERVER_STUDENT)
 													.queryParam("code", alumno.getCode())
-        											.header("AUTHORIZATION", "Bearer " + TOKEN);
+        											.header("Authorization", "Bearer " + TOKEN);
         											
         	ClientResponse response = webResource.accept("application/json")
         										 .put(ClientResponse.class, body);
@@ -72,7 +71,7 @@ public class RequestService {
     public  List<Tarea> getTareas() {
     	try {
         	WebResource.Builder webResource = client.resource(NOTITAS_SERVER_STUDENT_ASSIGNMENTS)
-        											.header("AUTHORIZATION", "Bearer " + TOKEN);
+        											.header("Authorization", "Bearer " + TOKEN);
         											
         	ClientResponse response = webResource.accept("application/json")
         										 .get(ClientResponse.class);

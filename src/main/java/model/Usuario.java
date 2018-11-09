@@ -1,12 +1,9 @@
 package model;
 
-import java.util.List;
-
 public class Usuario {
 
-	private static String user;
+	private String user;
 	private String password;
-	private static List<Tarea> tareas;
 	
 	public Usuario() { }
 
@@ -15,9 +12,7 @@ public class Usuario {
 		this.password = password;
 	}
 	
-	public static String getUser() { return user; }
-	public static List<Tarea> getTareas() {return tareas;}
-	
+	public String getUser() { return user; }
 	public void setUser(String user) { this.user = user; }
 	public void setPassword(String password) { this.password = password; }
 
