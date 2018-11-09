@@ -37,7 +37,12 @@ public class Tarea {
 	public void setNotas(List<Nota> notas) { this.notas = notas; }
 	
 	public Nota getNotaActual() { 
-		return notas.size()>0 ? notas.get(notas.size()-1) : notas.get(0); 
+		try {
+			return notas.size()>0 ? notas.get(notas.size()-1) : notas.get(0); 			
+		} catch(IndexOutOfBoundsException ex) {
+			return null;
+		}
+		
 	}
 	
 	public Tarea agregarNota(Nota nota) {
