@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.uqbar.commons.model.annotations.Observable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Observable
@@ -15,6 +16,7 @@ public class Alumno {
 	private String first_name;
 	private String last_name;
 	private String github_user;
+	@JsonIgnore
 	private List<Tarea> assignments;
 	
 	public Alumno() { }
